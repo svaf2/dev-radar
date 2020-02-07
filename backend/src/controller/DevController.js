@@ -37,5 +37,12 @@ module.exports = {
         const devs = await Dev.find();
 
         return response.json(devs);
-    }
+    },
+
+    async destroy(request, response) {
+        const { github_username } = request.query;
+
+        let dev = await Dev.findOneAndRemove({ github_username });
+        return response.json(dev);
+    },
 };
